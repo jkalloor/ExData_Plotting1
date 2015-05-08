@@ -2,12 +2,14 @@
 library(dplyr)
 library(reshape2)
 infile<- "C:/Users/JOSEPH/Downloads/Data-analysis/EDA/data/household_power_consumption.txt"
+#read a few recrds and get the colclassess.
 epcdata<-read.table(infile, header = TRUE, sep = ";", 
                                na.strings = "?", nrows = 10,
                                 skip = 0,  
                                 stringsAsFactors = default.stringsAsFactors(),
                      )
 classesx <- sapply(epcdata, class)
+#read the complete file 
 epcdata<-read.table(infile, header = TRUE, sep = ";", 
                   na.strings = "?", 
                   skip = 0,  
