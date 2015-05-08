@@ -33,6 +33,7 @@ with(epc4,plot(DateTime,Voltage,type="l",col="black",ylab="Voltage",xlab="dateti
 with(epc4,plot(DateTime,Sub_metering_1,type="l",col="black",ylab="Energy sub metering",xlab="")) 
 with(epc4,lines(DateTime,Sub_metering_2,type="l",col="red"  ))
 with(epc4,lines(DateTime,Sub_metering_3,type="l",col="blue"))
-legend("topright",lty=1,col=c("black","red","blue"),legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),pt.cex=0.6,cex=0.6,bty = "n")
+legend("topright",lty=1,col=c("black","red","blue"),legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),cex=0.9,bty = "n")
 with(epc4,plot(DateTime,Global_reactive_power,type="l",col="black",ylab="Global_reactive_power",xlab="datetime" ))
+title("Plot4",outer=TRUE,adj=0,line= -1)
 dev.off()
