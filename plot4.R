@@ -2,12 +2,14 @@
 library(dplyr)
 library(reshape2)
 infile<- "C:/Users/JOSEPH/Downloads/Data-analysis/EDA/data/household_power_consumption.txt"
+#read a few records and get the colclasses
 epcdata<-read.table(infile, header = TRUE, sep = ";", 
                                na.strings = "?", nrows = 10,
                                 skip = 0,  
                                 stringsAsFactors = default.stringsAsFactors(),
                      )
 classesx <- sapply(epcdata, class)
+#Read complete data
 epcdata<-read.table(infile, header = TRUE, sep = ";", 
                   na.strings = "?", 
                   skip = 0,  
@@ -16,7 +18,7 @@ epcdata<-read.table(infile, header = TRUE, sep = ";",
 )
 epcdata1 <- tbl_df(epcdata)
 epc1 <- filter(epcdata1,Date == "1/2/2007" | Date == "2/2/2007")
-#remove big table 
+#remove big table we do not need anymore.
 rm(epcdata)
 rm(epcdata1)
 epc2 <- mutate(epc1, Date1 = as.Date(Date, format = "%d/%m/%Y") )
