@@ -1,0 +1,32 @@
+#plot3.R 
+library(dplyr)
+library(reshape2)
+infile<- "C:/Users/JOSEPH/Downloads/Data-analysis/EDA/data/household_power_consumption.txt"
+epcdata<-read.table(infile, header = TRUE, sep = ";", 
+                               na.strings = "?", nrows = 10,
+                                skip = 0,  
+                                stringsAsFactors = default.stringsAsFactors(),
+                     )
+classesx <- sapply(epcdata, class)
+epcdata<-read.table(infile, header = TRUE, sep = ";", 
+                  na.strings = "?", 
+                  skip = 0,  
+                  stringsAsFactors = default.stringsAsFactors(),
+                  colClasses = classesx
+)
+epcdata1 <- tbl_df(epcdata)
+epc1 <- filter(epcdata1,Date == "1/2/2007" | Date == "2/2/2007")
+#remove the big tables.
+rm(epcdata)
+rm(epcdata1)
+epc2 <- mutate(epc1, Date1 = as.Date(Date, format = "%d/%m/%Y") )
+#combine Date and Time as one variable.
+epc3 <- mutate(epc2,DT = paste(Date1,Time))
+epc4 <- mutate(epc3,DateTime=  as.POSIXct(strptime(DT, "%Y-%m-%d %H:%M:%S")))
+
+png(file = "EDA/plot3.png", bg = "transparent")
+with(epc4,plot(DateTime,Sub_metering_1,type="l",col="black",ylab="Energy sub metering",xlab="" )) 
+with(epc4,lines(DateTime,Sub_metering_2,type="l",col="red"  ))
+with(epc4,lines(DateTime,Sub_metering_3,type="l",col="blue"))
+legend("topright",lty=1,col=c("black","red","blue"),legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+dev.off()
