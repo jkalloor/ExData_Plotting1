@@ -27,5 +27,6 @@ epc3 <- mutate(epc2,DT = paste(Date1,Time))
 epc4 <- mutate(epc3,DateTime=  as.POSIXct(strptime(DT, "%Y-%m-%d %H:%M:%S")))
 
 png(file = "EDA/plot2.png", bg = "transparent")
-with(epc4, plot(DateTime, Global_active_power,type="l" ,ylab="Global Active Power(kilowatts)",xlab=""))
+with(epc4, plot(DateTime, Global_active_power,type="l" ,ylab="Global Active Power (kilowatts)",xlab=""))
+title("Plot2",outer=TRUE,adj=0,line= -1)
 dev.off()
